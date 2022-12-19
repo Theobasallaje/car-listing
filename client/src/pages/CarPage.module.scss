@@ -1,0 +1,62 @@
+.backLink {
+    display: flex;
+    text-decoration: none;
+    color: #545B63;
+}
+
+.carImg {
+    margin-bottom: 32px;
+    height: 90%;
+    width: 100%;
+    max-width: 65%;
+    align-self: center;
+}
+
+.carInfoContainer {
+    display: flex;
+}
+
+.priceDetails {
+    display: flex;
+    align-self: center;
+}
+
+.vehicleDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.vehicleDetailsItem {
+    display: flex;
+    font-size: larger;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .carImg {
+        max-width: 100%;
+    }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .carImg {
+        max-width: 100%;
+    }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .carImg {
+        max-width: 80%;
+    }
+}
+
+// /* Large devices (laptops/desktops, 992px and up) */
+// @media only screen and (min-width: 992px) {
+//    
+// }
+
+// /* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {
+//     
+// }

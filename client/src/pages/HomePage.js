@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import NavBar from "../components/NavBar";
+import Alert from '@mui/material/Alert';
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import AddCarForm from "../components/AddCarForm";
@@ -29,6 +30,8 @@ function HomePage() {
   const [yearError, setYearError] = useState(false);
   const [mileageError, setMileageError] = useState(false);
   const [priceError, setPriceError] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
 
   const shouldFetch = useRef(true);
 
@@ -53,6 +56,11 @@ function HomePage() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleToastClose = () => {
+    if (showSuccessToast) setShowSuccessToast(false);
+    if (showErrorToast) setShowErrorToast(false);
   };
 
   const handleSubmit = () => {
@@ -88,9 +96,14 @@ function HomePage() {
       })
       .then((data) => {
         setCars(data);
+        setShowSuccessToast(true);
+        setTimeout(() => {
+          setShowSuccessToast(false);
+        }, 5000)
       })
       .catch((err) => {
         console.log(err);
+        setShowErrorToast(true);
       });
     setMake("");
     setModel("");
@@ -173,6 +186,8 @@ function HomePage() {
         mileageError={mileageError}
         priceError={priceError}
       />
+      {showSuccessToast && <Alert severity="success" onClose={handleToastClose} sx={{position: "fixed", left: 8, bottom: 8}}>Car Listed Successfully!</Alert>}
+      {showErrorToast && <Alert severity="error" onClose={handleToastClose} sx={{position: "fixed", left: 8, bottom: 8}}>Listing failed!</Alert>}
     </>
   );
 }
